@@ -1,28 +1,29 @@
 import express from "express";
 import dotenv from "dotenv";
+
 import { parseIncomingMessage } from "./parser.js";
 import { sendTextMessage } from "./whatsapp.js";
+import { initialSession, nextMessage } from "./flow.js";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// 54911XXXXXXXX -> 541115XXXXXXXX (para envío en modo test AR)
 function normalizeTo(to) {
-  // Caso CABA/GBA: 54911XXXXXXXX -> 541115XXXXXXXX
   if (typeof to === "string" && to.startsWith("54911")) {
     return "541115" + to.slice("54911".length);
   }
   return to;
 }
 
-// IMPORTANTE: Meta manda JSON
 app.use(express.json());
 
 // Healthcheck
 app.get("/", (_req, res) => res.send("OK - bot up"));
 
-// 1) Verificación del webhook (Meta hace GET al verificar)
+// Verificación webhook (GET)
 app.get("/webhook", (req, res) => {
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
@@ -37,45 +38,59 @@ app.get("/webhook", (req, res) => {
   return res.sendStatus(403);
 });
 
-// 2) Recepción de eventos (Meta hace POST por cada evento)
+// Sessions in-memory
+const sessions = new Map(); // wa_id -> session
 
+// Recepción eventos (POST)
 app.post("/webhook", async (req, res) => {
-  console.log("📩 EVENTO WHATSAPP (RAW):");
-  console.log(JSON.stringify(req.body, null, 2));
-
   res.sendStatus(200);
 
   try {
-    const message = parseIncomingMessage(req.body);
-    if (!message) {
-      console.log("ℹ️ Evento sin messages (puede ser status u otro tipo).");
+    // Tu parser actual (ajustá si devuelve otro shape)
+    const parsed = parseIncomingMessage(req.body);
+    if (!parsed) return;
+
+    const wa_id = parsed.wa_id;
+    const text = parsed.text;
+
+    if (!wa_id) return;
+
+    let session = sessions.get(wa_id);
+    if (!session) {
+      session = initialSession();
+      sessions.set(wa_id, session);
+    }
+
+    const out = nextMessage({ text, wa_id, session });
+
+    const toUser = normalizeTo(wa_id);
+
+    if (out.action === "DROP") {
+await sendTextMessage({ to: toUser, text: out.message });
+      sessions.delete(wa_id);
       return;
     }
 
-    const { wa_id, text } = message;
-    const to = normalizeTo(wa_id);
+    if (out.action === "HANDOFF") {
+      // 1) Mensaje al cliente
+await sendTextMessage({ to: toUser, text: out.message });
 
-    console.log("➡️ Respondiendo a:", to, "(wa_id:", wa_id, ")");
+      // 2) Mensaje al operador (normalizado también)
+      if (process.env.OPERATOR_PHONE) {
+        const toOp = normalizeTo(process.env.OPERATOR_PHONE);
+await sendTextMessage({ to: toOp, text: out.operatorSummary });
+      }
 
-    if (!text) {
-      await sendTextMessage({
-        to,
-        text: "Recibí tu mensaje, pero necesito texto. Escribime tu consulta."
-      });
+      sessions.delete(wa_id);
       return;
     }
 
-    await sendTextMessage({
-      to,
-      text: `Eco: ${text}`
-    });
-
-  } catch (err) {
-    console.error("🔥 Error procesando webhook:", err?.response?.data || err);
+    // REPLY
+await sendTextMessage({ to: toUser, text: out.message });
+  } catch (e) {
+    console.error("Error en webhook:", e);
   }
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);

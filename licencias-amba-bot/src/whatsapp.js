@@ -8,6 +8,13 @@ export async function sendTextMessage({ to, text }) {
     throw new Error("Faltan WHATSAPP_TOKEN o WHATSAPP_PHONE_NUMBER_ID en .env");
   }
 
+  if (!to) {
+    throw new Error("sendTextMessage: falta 'to'");
+  }
+  if (typeof text !== "string" || text.trim().length === 0) {
+    throw new Error(`sendTextMessage: 'text' inválido (${String(text)})`);
+  }
+
   const url = `https://graph.facebook.com/v24.0/${phoneNumberId}/messages`;
 
   const payload = {
