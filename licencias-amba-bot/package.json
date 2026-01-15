@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/app.js",
     "send:test": "node src/send_test.js",
-  "send:node": "node src/send_node_test.js"
+    "send:node": "node src/send_node_test.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
+    "ejs": "^4.0.1",
     "express": "^5.2.1"
   },
   "devDependencies": {

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Derechos - Defensa Licencias AMBA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f1829",
+                        "accent-yellow": "#facc15",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1b212d",
+                        "border-gray": "#e2e8f0",
+                        "accent": "#facc15",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .yellow-underline {
+            background-image: linear-gradient(120deg, #facc15 0%, #facc15 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.3em;
+            background-position: 0 88%;
+            transition: background-size 0.25s ease-in;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-200">
+<!-- Header Navigation -->
+<%- include("partials/header") %>
+
+
+<main class="max-w-[1000px] mx-auto px-6 py-12 lg:py-20">
+<!-- Hero Introduction -->
+<section class="text-center mb-12">
+<span class="inline-block py-1 px-3 bg-accent-yellow/20 text-primary dark:text-accent-yellow text-xs font-bold tracking-widest uppercase rounded-full mb-4">
+                Información Legal Actualizada 2024
+            </span>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6">
+                Conocé tus derechos ante la <br/>
+<span class="yellow-underline">retención de licencias</span>
+</h1>
+<p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Brindamos claridad y respaldo legal para proteger tu derecho a la libre circulación y al trabajo en toda el Área Metropolitana.
+            </p>
+<div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a href="<%= whatsappLink %>" target="_blank" rel="noopener"
+   class="inline-flex items-center justify-center bg-accent text-primary font-bold py-3 px-8 rounded-full hover:opacity-90 transition-all">
+  Iniciar Defensa Legal
+</a>
+
+<p class="text-sm text-gray-500 font-medium">Asesoramiento inmediato 24/7</p>
+</div>
+</section>
+<!-- Rights Highlights Grid -->
+<section class="grid md:grid-cols-2 gap-6 my-20">
+<div class="p-8 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-2 py-1 bg-accent-yellow text-[10px] font-black uppercase rounded">Derecho Fundamental</span>
+<span class="material-symbols-outlined text-accent-yellow">balance</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Debido Proceso</h3>
+<p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Ninguna autoridad puede retener su licencia de forma permanente sin una resolución judicial firme. Usted tiene derecho a ser oído y presentar su descargo antes de cualquier sanción inhabilitante.
+                </p>
+</div>
+<div class="p-8 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-2 py-1 bg-accent-yellow text-[10px] font-black uppercase rounded">Restricción Ilegal</span>
+<span class="material-symbols-outlined text-accent-yellow">fmd_bad</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Límites de Retención</h3>
+<p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    La boleta de citación del inculpado (Formulario Naranjado) habilita a conducir por solo 30 días. Superado ese plazo, la retención sin resolución es considerada una privación ilegítima de un derecho.
+                </p>
+</div>
+</section>
+<!-- Comparison Paths -->
+<section class="mb-20">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Vías de Acción Legal</h2>
+<div class="h-1 w-20 bg-accent-yellow mx-auto"></div>
+</div>
+<div class="grid md:grid-cols-2 gap-0 border border-border-gray dark:border-white/10 rounded-3xl overflow-hidden">
+<div class="p-10 bg-white dark:bg-white/5 border-b md:border-b-0 md:border-r border-border-gray dark:border-white/10">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-full bg-primary/10 dark:bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined">description</span>
+</div>
+<h4 class="text-xl font-bold">Vía Administrativa</h4>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 mt-1">check_circle</span>
+<span class="text-sm">Presentación de descargo ante juzgado de faltas local.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 mt-1">check_circle</span>
+<span class="text-sm">Solicitud de prórroga de boleta de citación.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 mt-1">check_circle</span>
+<span class="text-sm">Pago voluntario o reconocimiento de infracción con quita.</span>
+</li>
+</ul>
+</div>
+<div class="p-10 bg-gray-50 dark:bg-primary/20">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-full bg-accent-yellow/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-accent-yellow">account_balance</span>
+</div>
+<h4 class="text-xl font-bold">Vía Judicial</h4>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent-yellow mt-1">ads_click</span>
+<span class="text-sm">Acción de Amparo por derecho al trabajo.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent-yellow mt-1">ads_click</span>
+<span class="text-sm">Medida cautelar para restitución inmediata de licencia.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent-yellow mt-1">ads_click</span>
+<span class="text-sm">Apelación de sentencias administrativas arbitrarias.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Professional Driver Section -->
+<section class="relative p-1 bg-accent-yellow rounded-3xl mb-20">
+<div class="bg-primary text-white p-8 md:p-12 rounded-[1.4rem] overflow-hidden relative">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-9xl">local_shipping</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-6">
+<span class="px-3 py-1 bg-accent-yellow text-primary text-xs font-black uppercase rounded">Urgencia Máxima</span>
+<h2 class="text-2xl md:text-3xl font-bold">Conductores Profesionales</h2>
+</div>
+<p class="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
+                        Si su licencia es su herramienta de trabajo (Categorías C, D, E), la retención afecta su derecho constitucional a trabajar. Iniciamos procesos de restitución urgente en menos de 48hs hábiles.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg text-sm">
+<span class="material-symbols-outlined text-accent-yellow">verified</span>
+                            Prioridad de gestión
+                        </div>
+<div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg text-sm">
+<span class="material-symbols-outlined text-accent-yellow">history</span>
+                            Plazos acelerados
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="text-center py-12 border-t border-border-gray dark:border-white/10">
+<h2 class="text-3xl font-extrabold mb-8">¿Necesitás asesoramiento inmediato?</h2>
+<div class="flex flex-col items-center gap-6">
+<a href="<%= whatsappLink %>" target="_blank" rel="noopener"
+   class="inline-flex items-center justify-center bg-accent text-primary font-bold py-4 px-10 rounded-full hover:opacity-90 transition-all">
+  Iniciar Defensa Ahora
+</a>
+
+<div class="flex items-center gap-8 opacity-60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">lock</span>
+<span class="text-xs font-bold uppercase tracking-widest">Privacidad Garantizada</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="text-xs font-bold uppercase tracking-widest">Matrícula Profesional</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<%- include("partials/footer") %>
+<!-- Floating WhatsApp Button -->
+<%- include("partials/floating-whatsapp") %>
+
+</body></html>

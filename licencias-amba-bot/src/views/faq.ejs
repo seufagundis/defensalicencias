@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FAQ - Defensa Licencias AMBA</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f1829",
+                        "accent-yellow": "#facc15",
+                        "accent": "#facc15",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#14181e",
+                        "border-gray": "#e5e7eb",
+                    },
+
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        /* Custom highlight for legal sobriety */
+        .legal-highlight {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, #FACC15 70%);
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-primary dark:text-white antialiased">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- TopNavBar Component -->
+            <%- include("partials/header") %>
+
+                <main class="flex-1 py-12 lg:py-20 px-6 lg:px-40">
+                    <div class="max-w-[960px] mx-auto flex flex-col gap-12">
+                        <!-- PageHeading Component -->
+                        <div
+                            class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-l-4 border-accent pl-6">
+                            <div class="flex flex-col gap-3 max-w-2xl">
+                                <h1
+                                    class="text-primary dark:text-white text-4xl lg:text-5xl font-black leading-tight tracking-tight">
+                                    Preguntas Frecuentes</h1>
+                                <p class="text-gray-600 dark:text-gray-400 text-lg font-normal leading-relaxed">
+                                    Información clara y directa sobre la defensa legal de su licencia de conducir en el
+                                    Área Metropolitana de Buenos Aires.
+                                </p>
+                            </div>
+                            <a href="<%= whatsappLink %>" target="_blank" rel="noopener"
+                                class="inline-flex items-center justify-center bg-accent text-primary font-bold py-3 px-8 rounded-full hover:opacity-90 transition-all">
+                                Consultar ahora
+                            </a>
+
+                        </div>
+                        <!-- FAQ Accordion List -->
+                        <div class="flex flex-col gap-4">
+                            <!-- Accordion 1 -->
+                            <details
+                                class="group bg-white dark:bg-gray-900/50 border border-border-gray dark:border-gray-800 rounded-lg overflow-hidden transition-all duration-300 open:ring-1 open:ring-accent"
+                                open="">
+                                <summary class="flex cursor-pointer items-center justify-between p-6 list-none">
+                                    <span
+                                        class="text-primary dark:text-white text-base lg:text-lg font-bold pr-4">¿Cubren
+                                        todas las zonas de AMBA?</span>
+                                    <span
+                                        class="material-symbols-outlined text-accent transition-transform group-open:rotate-180">expand_more</span>
+                                </summary>
+                                <div
+                                    class="px-6 pb-6 text-gray-600 dark:text-gray-400 text-sm lg:text-base leading-relaxed">
+                                    Sí, operamos en toda la <span class="font-bold text-primary dark:text-white">Área
+                                        Metropolitana de Buenos Aires (AMBA)</span>, lo que incluye la Ciudad Autónoma
+                                    de Buenos Aires (CABA) y los 40 municipios del Gran Buenos Aires. Contamos con
+                                    especialistas matriculados en cada una de las jurisdicciones para asegurar la mejor
+                                    representación.
+                                </div>
+                            </details>
+                            <!-- Accordion 2 -->
+                            <details
+                                class="group bg-white dark:bg-gray-900/50 border border-border-gray dark:border-gray-800 rounded-lg overflow-hidden transition-all duration-300 open:ring-1 open:ring-accent">
+                                <summary class="flex cursor-pointer items-center justify-between p-6 list-none">
+                                    <span class="text-primary dark:text-white text-base lg:text-lg font-bold pr-4">¿Qué
+                                        sucede si mi licencia es de la Provincia?</span>
+                                    <span
+                                        class="material-symbols-outlined text-accent transition-transform group-open:rotate-180">expand_more</span>
+                                </summary>
+                                <div
+                                    class="px-6 pb-6 text-gray-600 dark:text-gray-400 text-sm lg:text-base leading-relaxed">
+                                    Si su licencia fue emitida en la Provincia de Buenos Aires pero la infracción
+                                    ocurrió en CABA (o viceversa), nuestro equipo gestiona la defensa considerando el
+                                    <span class="legal-highlight">Convenio Interjurisdiccional</span>. Resolvemos
+                                    impedimentos para renovar y bloqueos de antecedentes nacionales.
+                                </div>
+                            </details>
+                            <!-- Accordion 3 -->
+                            <details
+                                class="group bg-white dark:bg-gray-900/50 border border-border-gray dark:border-gray-800 rounded-lg overflow-hidden transition-all duration-300 open:ring-1 open:ring-accent">
+                                <summary class="flex cursor-pointer items-center justify-between p-6 list-none">
+                                    <span
+                                        class="text-primary dark:text-white text-base lg:text-lg font-bold pr-4">¿Puedo
+                                        defender una licencia profesional (Categoría D/E)?</span>
+                                    <span
+                                        class="material-symbols-outlined text-accent transition-transform group-open:rotate-180">expand_more</span>
+                                </summary>
+                                <div
+                                    class="px-6 pb-6 text-gray-600 dark:text-gray-400 text-sm lg:text-base leading-relaxed">
+                                    Absolutamente. Entendemos que su licencia es su <span
+                                        class="font-bold italic">herramienta de trabajo</span>. Priorizamos casos de
+                                    conductores profesionales para evitar la inhabilitación y asegurar que pueda seguir
+                                    operando mientras se resuelve el proceso legal.
+                                </div>
+                            </details>
+                            <!-- Accordion 4 -->
+                            <details
+                                class="group bg-white dark:bg-gray-900/50 border border-border-gray dark:border-gray-800 rounded-lg overflow-hidden transition-all duration-300 open:ring-1 open:ring-accent">
+                                <summary class="flex cursor-pointer items-center justify-between p-6 list-none">
+                                    <span
+                                        class="text-primary dark:text-white text-base lg:text-lg font-bold pr-4">¿Cuánto
+                                        tiempo demora el proceso legal?</span>
+                                    <span
+                                        class="material-symbols-outlined text-accent transition-transform group-open:rotate-180">expand_more</span>
+                                </summary>
+                                <div
+                                    class="px-6 pb-6 text-gray-600 dark:text-gray-400 text-sm lg:text-base leading-relaxed">
+                                    El tiempo varía según la complejidad y el juzgado interviniente. En promedio,
+                                    logramos una resolución preliminar que le permite <span
+                                        class="legal-highlight">seguir circulando en un plazo de 48 a 72 horas
+                                        hábiles</span>, mientras el trámite administrativo sigue su curso.
+                                </div>
+                            </details>
+                            <!-- Accordion 5 -->
+                            <details
+                                class="group bg-white dark:bg-gray-900/50 border border-border-gray dark:border-gray-800 rounded-lg overflow-hidden transition-all duration-300 open:ring-1 open:ring-accent">
+                                <summary class="flex cursor-pointer items-center justify-between p-6 list-none">
+                                    <span
+                                        class="text-primary dark:text-white text-base lg:text-lg font-bold pr-4">¿Cuáles
+                                        son los costos y métodos de pago?</span>
+                                    <span
+                                        class="material-symbols-outlined text-accent transition-transform group-open:rotate-180">expand_more</span>
+                                </summary>
+                                <div
+                                    class="px-6 pb-6 text-gray-600 dark:text-gray-400 text-sm lg:text-base leading-relaxed">
+                                    Nuestros honorarios son transparentes y se informan por adelantado. Ofrecemos planes
+                                    de pago en cuotas y aceptamos transferencias bancarias, tarjetas de crédito y
+                                    plataformas digitales. <span class="font-bold text-primary dark:text-white">La
+                                        primera consulta de evaluación no tiene costo.</span>
+                                </div>
+                            </details>
+                        </div>
+                        <!-- SingleButton Component (Lower CTA) -->
+                        <div
+                            class="flex flex-col items-center gap-6 py-12 border-t border-border-gray dark:border-gray-800 mt-8">
+                            <p class="text-gray-500 dark:text-gray-400 text-center max-w-md">
+                                ¿No encontró la respuesta que buscaba? Hable directamente con un especialista en derecho
+                                vial.
+                            </p>
+                            <a href="<%= whatsappLink %>" target="_blank" rel="noopener"
+                                class="inline-flex items-center justify-center bg-accent text-primary font-bold py-4 px-10 rounded-full hover:opacity-90 transition-all">
+                                Hablar con un especialista
+                            </a>
+
+                            <div class="flex items-center gap-2 text-sm font-medium text-gray-400">
+                                <span class="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+                                Abogados en línea ahora
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <!-- Footer Component -->
+                <%- include("partials/footer") %>
+        </div>
+    </div>
+    <!-- Floating Action Button -->
+    <%- include("partials/floating-whatsapp") %>
+
+</body>
+
+</html>

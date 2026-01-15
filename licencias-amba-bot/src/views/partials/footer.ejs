@@ -1,0 +1,54 @@
+<footer class="w-full bg-[#0F172A] py-12 px-4 md:px-10 lg:px-40 mt-10 border-t border-white/5">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+    <div class="col-span-1 md:col-span-2 space-y-6">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-[#FACC15] text-3xl">balance</span>
+        <span class="text-white text-xl font-black">DEFENSA LICENCIAS AMBA</span>
+      </div>
+
+      <p class="text-white/60 max-w-sm leading-relaxed">
+        Información general sobre defensa administrativa y judicial en materia vial.
+        Atendemos AMBA (CABA + Conurbano). La viabilidad y la estrategia dependen del caso.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="text-white font-bold mb-6">Jurisdicción</h4>
+      <ul class="space-y-3 text-white/70 text-sm">
+        <li><span class="text-white/70">CABA</span></li>
+        <li><span class="text-white/70">Provincia de Buenos Aires</span></li>
+        <li><span class="text-white/70">AMBA (Conurbano)</span></li>
+        <li><span class="text-white/70">Infracciones CABA/PBA</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-white font-bold mb-6">Contacto</h4>
+      <ul class="space-y-3 text-white/70 text-sm">
+        <li class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-xs">chat</span>
+          Canal único: WhatsApp
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-xs">schedule</span>
+          Horario: <%= process.env.HORARIO_ATENCION || "Lun a Vie 9 a 18" %>
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-xs">location_on</span>
+          AMBA (CABA + Conurbano)
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-white/40 text-xs">
+      © <%= new Date().getFullYear() %> Defensa Licencias AMBA. Información general; no constituye asesoramiento legal.
+    </p>
+
+    <div class="flex gap-6 text-white/40 text-xs">
+      <a class="hover:text-white transition-colors" href="/terminos">Aviso legal</a>
+      <a class="hover:text-white transition-colors" href="/privacidad">Política de privacidad</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Inicio - Defensa Licencias AMBA</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f1829",
+                        "accent-yellow": "#facc15",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#14181e",
+                        "accent": "#facc15",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-primary dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
+
+    <!-- Header Section -->
+    <%- include("partials/header") %>
+
+        <main class="flex flex-col items-center">
+            <!-- Hero Section -->
+            <section class="w-full max-w-[1440px] px-4 md:px-10 lg:px-40 py-10 lg:py-16">
+                <div class="relative overflow-hidden rounded-xl bg-primary min-h-[520px] flex items-center">
+                    <!-- Abstract Background Pattern -->
+                    <div class="absolute inset-0 opacity-10 pointer-events-none"
+                        data-alt="Dark navy geometric pattern background"
+                        style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 32px 32px;">
+                    </div>
+                    <div class="relative z-10 px-8 md:px-16 lg:w-3/4 flex flex-col gap-8">
+                        <div
+                            class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 w-fit">
+                            <span class="flex h-2 w-2 rounded-full bg-accent-yellow"></span>
+                            <span class="text-white/80 text-xs font-bold tracking-wider uppercase">Soluciones Legales de
+                                Tránsito</span>
+                        </div>
+                        <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
+                            ¿No podés renovar la <br />
+                            <span class="text-accent-yellow">licencia por multas?</span>
+                        </h1>
+                        <p class="text-white/70 text-lg md:text-xl max-w-2xl leading-relaxed">
+                            Gestionamos la liberación de tu registro de conducir de forma legal y rápida en CABA y
+                            Provincia
+                            de Buenos Aires. Sin gestores intermediarios, atención por abogados especializados.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                            <a href="<%= whatsappLink %>" target="_blank" rel="noopener"
+                                class="inline-flex items-center justify-center bg-accent text-primary font-bold py-3 px-8 rounded-full hover:opacity-90 transition-all">
+                                Comenzar Trámite Gratis
+                            </a>
+                            <a href="/derechos" class="inline-flex items-center justify-center
+          bg-white/10 hover:bg-white/20
+          text-white px-8 py-4 rounded-lg
+          text-base font-bold transition-all
+          border border-white/10">
+                                Ver Cobertura
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- Decorative Element -->
+                    <div class="absolute right-0 bottom-0 top-0 w-1/4 hidden lg:block bg-accent-yellow opacity-10"
+                        data-alt="Subtle yellow geometric shape accent"
+                        style="clip-path: polygon(100% 0, 0 100%, 100% 100%);"></div>
+                </div>
+            </section>
+            <!-- Features Section -->
+            <section class="w-full max-w-[1440px] px-4 md:px-10 lg:px-40 py-16 bg-white dark:bg-background-dark/50">
+                <div class="flex flex-col gap-12">
+                    <div
+                        class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-l-4 border-accent-yellow pl-6">
+                        <div class="flex flex-col gap-2">
+                            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-primary dark:text-white">
+                                Asesoramiento Especializado</h2>
+                            <p class="text-gray-500 dark:text-gray-400 text-lg">Especialistas en la Ley Nacional de
+                                Tránsito
+                                a tu disposición.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Feature 1 -->
+                        <div
+                            class="group p-8 rounded-xl bg-background-light dark:bg-primary/40 border border-gray-200 dark:border-white/5 hover:border-accent-yellow/50 transition-all hover:shadow-xl">
+                            <div
+                                class="bg-primary dark:bg-accent-yellow/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <span
+                                    class="material-symbols-outlined text-accent-yellow text-3xl">credit_card_off</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-primary dark:text-white">Bloqueo por Deuda</h3>
+                            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                Impugnamos y solucionamos las infracciones que impiden tu trámite de renovación o
+                                emisión de
+                                licencia nueva de manera definitiva.
+                            </p>
+                        </div>
+                        <!-- Feature 2 -->
+                        <div
+                            class="group p-8 rounded-xl bg-background-light dark:bg-primary/40 border border-gray-200 dark:border-white/5 hover:border-accent-yellow/50 transition-all hover:shadow-xl">
+                            <div
+                                class="bg-primary dark:bg-accent-yellow/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-accent-yellow text-3xl">distance</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-primary dark:text-white">Cobertura AMBA</h3>
+                            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                Operamos con éxito en todos los juzgados de faltas de CABA y municipios de la Provincia
+                                de
+                                Buenos Aires (GBA).
+                            </p>
+                        </div>
+                        <!-- Feature 3 -->
+                        <div
+                            class="group p-8 rounded-xl bg-background-light dark:bg-primary/40 border border-gray-200 dark:border-white/5 hover:border-accent-yellow/50 transition-all hover:shadow-xl">
+                            <div
+                                class="bg-primary dark:bg-accent-yellow/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-accent-yellow text-3xl">gavel</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-primary dark:text-white">Respaldo Legal</h3>
+                            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                Representación directa por abogados especialistas en derecho administrativo. Seguridad
+                                jurídica en cada paso del proceso.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Timeline Section -->
+            <section class="w-full max-w-[1440px] px-4 md:px-10 lg:px-40 py-20">
+                <div class="bg-primary rounded-2xl p-10 md:p-16 flex flex-col md:flex-row gap-12 items-center">
+                    <div class="flex-1 space-y-6">
+                        <h2 class="text-white text-3xl md:text-4xl font-extrabold">Cómo funciona el proceso</h2>
+                        <p class="text-white/60 text-lg">Un camino simple, legal y sin vueltas para recuperar tu derecho
+                            a
+                            conducir.</p>
+                        <div class="pt-4">
+                            <a href="<%= whatsappLink %>" target="_blank" rel="noopener"
+                                class="inline-flex items-center justify-center bg-accent text-primary font-bold py-4 px-10 rounded-full hover:opacity-90 transition-all">
+                                Iniciar mi consulta
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full space-y-0">
+                        <!-- Step 1 -->
+                        <div class="flex gap-6 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-accent-yellow text-primary flex items-center justify-center font-bold z-10 shrink-0">
+                                    1</div>
+                                <div class="w-0.5 h-full bg-white/10 group-last:bg-transparent"></div>
+                            </div>
+                            <div class="pb-10 pt-1">
+                                <h4 class="text-white text-lg font-bold mb-1">Envía tu consulta</h4>
+                                <p class="text-white/50">Comunicate vía WhatsApp o nuestro formulario web con tus datos
+                                    básicos.</p>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="flex gap-6 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-accent-yellow text-primary flex items-center justify-center font-bold z-10 shrink-0">
+                                    2</div>
+                                <div class="w-0.5 h-full bg-white/10 group-last:bg-transparent"></div>
+                            </div>
+                            <div class="pb-10 pt-1">
+                                <h4 class="text-white text-lg font-bold mb-1">Análisis Integral</h4>
+                                <p class="text-white/50">Revisamos tu historial de infracciones, actas y estado
+                                    registral en
+                                    las bases oficiales.</p>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="flex gap-6 group">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-accent-yellow text-primary flex items-center justify-center font-bold z-10 shrink-0">
+                                    3</div>
+                                <div class="w-0.5 h-0 bg-white/10 group-last:bg-transparent"></div>
+                            </div>
+                            <div class="pb-4 pt-1">
+                                <h4 class="text-white text-lg font-bold mb-1">Liberamos tu Licencia</h4>
+                                <p class="text-white/50">Presentamos los descargos legales para que puedas renovar sin
+                                    pagar
+                                    multas improcedentes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- CTA / Trust Section -->
+            <section class="w-full max-w-[1440px] px-4 md:px-10 lg:px-40 py-16 text-center">
+                <div class="bg-accent-yellow/10 border border-accent-yellow/20 rounded-xl p-8 md:p-12">
+                    <span class="material-symbols-outlined text-accent-yellow text-5xl mb-4">verified_user</span>
+                    <h2 class="text-2xl md:text-3xl font-black mb-4">Más de 5.000 casos resueltos</h2>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8 text-lg">
+                        No pagues multas que no te corresponden. La ley te ampara y nosotros hacemos valer tus derechos
+                        ante
+                        el organismo emisor.
+                    </p>
+                    <div
+                        class="flex flex-wrap justify-center gap-10 opacity-60 grayscale brightness-50 dark:brightness-150">
+                        <div class="h-8 flex items-center font-black text-xl italic tracking-tighter">CABA</div>
+                        <div class="h-8 flex items-center font-black text-xl italic tracking-tighter">PBA</div>
+                        <div class="h-8 flex items-center font-black text-xl italic tracking-tighter">ANSV</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <%- include("partials/footer") %>
+            <!-- Floating WhatsApp Button -->
+            <%- include("partials/floating-whatsapp") %>
+
+</body>
+
+</html>

@@ -1,5 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
+
 
 import { parseIncomingMessage } from "./parser.js";
 import { sendTextMessage } from "./whatsapp.js";
@@ -8,7 +10,14 @@ import { initialSession, nextMessage } from "./flow.js";
 dotenv.config();
 
 const app = express();
+
+// Vistas (sitio web)
+app.set("views", path.join(process.cwd(), "src", "views"));
+app.set("view engine", "ejs");
+
+
 const PORT = process.env.PORT || 3000;
+
 
 // 54911XXXXXXXX -> 541115XXXXXXXX (para envío en modo test AR)
 function normalizeTo(to) {
@@ -18,7 +27,36 @@ function normalizeTo(to) {
   return to;
 }
 
+function buildWhatsAppLink(originLabel) {
+  const phone = process.env.SITE_WHATSAPP_PHONE || process.env.OPERATOR_PHONE;
+  const base = "Hola, quiero evaluar mi caso por restricción de licencia.";
+  const origin = originLabel ? ` (Origen: sitio web - ${originLabel})` : "";
+  const text = encodeURIComponent(base + origin);
+
+  if (!phone) return "#";
+  const digits = String(phone).replace(/\D/g, "");
+  return `https://wa.me/${digits}?text=${text}`;
+}
+
+
 app.use(express.json());
+
+app.get("/", (_req, res) => {
+  res.render("inicio", { whatsappLink: buildWhatsAppLink("Inicio") });
+});
+
+app.get("/derechos", (_req, res) => {
+  res.render("derechos", { whatsappLink: buildWhatsAppLink("Derechos") });
+});
+
+app.get("/faq", (_req, res) => {
+  res.render("faq", { whatsappLink: buildWhatsAppLink("FAQ") });
+});
+
+app.get("/contacto", (_req, res) => {
+  res.render("contacto", { whatsappLink: buildWhatsAppLink("Contacto") });
+});
+
 
 // Healthcheck
 app.get("/", (_req, res) => res.send("OK - bot up"));
