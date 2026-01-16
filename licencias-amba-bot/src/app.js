@@ -2,9 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 
+import { sendTextMessage, sendButtonsMessage, sendListMessage } from "./whatsapp.js";
 
 import { parseIncomingMessage } from "./parser.js";
-import { sendTextMessage } from "./whatsapp.js";
 import { initialSession, nextMessage } from "./flow.js";
 
 dotenv.config();
@@ -36,6 +36,28 @@ function buildWhatsAppLink(originLabel) {
   if (!phone) return "#";
   const digits = String(phone).replace(/\D/g, "");
   return `https://wa.me/${digits}?text=${text}`;
+}
+
+async function sendOut(to, out) {
+  if (out.action === "REPLY_TEXT") {
+    return sendTextMessage({ to, text: out.message });
+  }
+
+  if (out.action === "REPLY_BUTTONS") {
+    return sendButtonsMessage({ to, body: out.body, buttons: out.buttons });
+  }
+
+  if (out.action === "REPLY_LIST") {
+    return sendListMessage({
+      to,
+      body: out.body,
+      buttonText: out.buttonText,
+      sections: out.sections,
+    });
+  }
+
+  // Si te olvidaste de mapear una acción nueva, que explote con mensaje claro:
+  throw new Error(`Acción no soportada: ${out.action}`);
 }
 
 
@@ -99,32 +121,41 @@ app.post("/webhook", async (req, res) => {
       sessions.set(wa_id, session);
     }
 
+
+
+    console.log("IN:", { wa_id, text, prevState: session?.state });
     const out = nextMessage({ text, wa_id, session });
+    sessions.set(wa_id, session);
+
+
+    console.log("OUT:", { wa_id, newState: session?.state, action: out?.action });
+
 
     const toUser = normalizeTo(wa_id);
 
     if (out.action === "DROP") {
-await sendTextMessage({ to: toUser, text: out.message });
+      await sendOut(toUser, { action: "REPLY_TEXT", message: out.message });
       sessions.delete(wa_id);
       return;
     }
 
-    if (out.action === "HANDOFF") {
-      // 1) Mensaje al cliente
-await sendTextMessage({ to: toUser, text: out.message });
 
-      // 2) Mensaje al operador (normalizado también)
+    if (out.action === "HANDOFF") {
+      await sendOut(toUser, { action: "REPLY_TEXT", message: out.message });
+
       if (process.env.OPERATOR_PHONE) {
         const toOp = normalizeTo(process.env.OPERATOR_PHONE);
-await sendTextMessage({ to: toOp, text: out.operatorSummary });
+        await sendTextMessage({ to: toOp, text: out.operatorSummary });
       }
 
       sessions.delete(wa_id);
       return;
     }
 
+
     // REPLY
-await sendTextMessage({ to: toUser, text: out.message });
+    await sendOut(toUser, out);
+
   } catch (e) {
     console.error("Error en webhook:", e);
   }
