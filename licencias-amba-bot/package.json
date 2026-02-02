@@ -4,6 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+      "start": "node src/app.js",
     "dev": "nodemon src/app.js",
     "send:test": "node src/send_test.js",
     "send:node": "node src/send_node_test.js"
