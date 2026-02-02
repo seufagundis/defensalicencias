@@ -17,7 +17,7 @@ const __dirname = path.dirname(__filename);
 
 
 // Vistas (sitio web)
-app.set("views", path.resolve("src/views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 
