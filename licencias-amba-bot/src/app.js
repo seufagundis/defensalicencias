@@ -20,6 +20,9 @@ const __dirname = path.dirname(__filename);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+console.log("CWD:", process.cwd());
+console.log("VIEWS:", app.get("views"));
+
 
 const PORT = process.env.PORT || 3000;
 
