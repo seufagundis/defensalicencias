@@ -10,6 +10,7 @@
     </div>
   </div>
 
+  <!-- Desktop Nav -->
   <div class="hidden md:flex items-center gap-6">
     <a class="text-white/80 hover:text-[#FACC15] text-sm font-medium transition-colors" href="/">Inicio</a>
     <a class="text-white/80 hover:text-[#FACC15] text-sm font-medium transition-colors" href="/derechos">Conocé tus derechos</a>
@@ -22,8 +23,54 @@
     </a>
   </div>
 
-  <!-- Mobile Menu Icon (Simulated) -->
-  <button class="md:hidden text-white" aria-label="Abrir menú">
-    <span class="material-symbols-outlined">menu</span>
+  <!-- Mobile Menu Button -->
+  <button id="menu-btn"
+          class="md:hidden text-white relative z-[60] p-2 rounded-lg active:scale-95 transition"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          type="button">
+    <span class="material-symbols-outlined text-3xl">menu</span>
   </button>
 </header>
+
+<!-- Mobile Backdrop -->
+<div id="mobile-backdrop" class="hidden fixed inset-0 bg-black/60 z-50 md:hidden"></div>
+
+<!-- Mobile Menu Panel -->
+<nav id="mobile-menu"
+     class="hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-[#0B1222] z-[55] md:hidden shadow-2xl border-l border-white/10">
+  <div class="p-6 flex flex-col gap-6">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="bg-[#FACC15] p-1.5 rounded">
+          <span class="material-symbols-outlined text-[#0F172A] text-xl font-bold">balance</span>
+        </div>
+        <span class="text-white font-extrabold tracking-tight">MENÚ</span>
+      </div>
+
+      <button id="menu-close"
+              class="text-white/80 hover:text-white p-2 rounded-lg"
+              aria-label="Cerrar menú"
+              type="button">
+        <span class="material-symbols-outlined text-3xl">close</span>
+      </button>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <a class="text-white/90 hover:text-[#FACC15] text-base font-semibold transition-colors" href="/">Inicio</a>
+      <a class="text-white/90 hover:text-[#FACC15] text-base font-semibold transition-colors" href="/derechos">Conocé tus derechos</a>
+      <a class="text-white/90 hover:text-[#FACC15] text-base font-semibold transition-colors" href="/faq">Preguntas frecuentes</a>
+      <a class="text-white/90 hover:text-[#FACC15] text-base font-semibold transition-colors" href="/contacto">Contacto</a>
+    </div>
+
+    <a href="<%= whatsappLink %>" target="_blank" rel="noopener noreferrer"
+       class="bg-[#FACC15] hover:bg-[#EAB308] text-[#0F172A] px-6 py-3 rounded-xl text-base font-extrabold tracking-tight transition-all shadow-md active:scale-95 text-center">
+      Consultar por WhatsApp
+    </a>
+
+    <p class="text-white/50 text-sm leading-relaxed">
+      Respondemos rápido. Contanos tu caso y te guiamos con el paso a paso.
+    </p>
+  </div>
+</nav>
