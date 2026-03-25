@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html class="light" lang="es">
-    
+
 <!-- <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -54,181 +54,202 @@
 </head> -->
 
 <head>
-  <%- include("partials/head", { title: "Derechos" }) %>
+    <%- include("partials/head", { title: "Derechos" }) %>
 </head>
 
 
 <body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-200">
-<!-- Header Navigation -->
-<%- include("partials/header") %>
+    <!-- Header Navigation -->
+    <%- include("partials/header") %>
 
 
-<main class="max-w-[1000px] mx-auto px-6 py-12 lg:py-20">
-<!-- Hero Introduction -->
-<section class="text-center mb-12">
-<!-- <span class="inline-block py-1 px-3 bg-accent-yellow/20 text-primary dark:text-accent-yellow text-xs font-bold tracking-widest uppercase rounded-full mb-4">
+        <main class="max-w-[1000px] mx-auto px-6 py-12 lg:py-20">
+            <!-- Hero Introduction -->
+            <section class="text-center mb-12">
+                <!-- <span class="inline-block py-1 px-3 bg-accent-yellow/20 text-primary dark:text-accent-yellow text-xs font-bold tracking-widest uppercase rounded-full mb-4">
                 Información Legal Actualizada 2024
             </span> -->
-<h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-8 tracking-tight text-primary dark:text-white">
-    No deberían obligarte a pagar multas
-    <span class="relative inline">
-        <span class="relative z-10">
-            para renovar tu licencia
-        </span>
-        <span class="absolute left-0 bottom-1 w-full h-3 bg-accent-yellow/40 -z-0 rounded-sm"></span>
-    </span>
-</h1>
-<p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                Brindamos claridad y respaldo legal para proteger tu derecho a la libre circulación y al trabajo.
-            </p>
-<div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-<a href="<%= whatsappLink %>" target="_blank" rel="noopener"
-   class="inline-flex items-center justify-center bg-accent text-primary font-bold py-3 px-8 rounded-full hover:opacity-90 transition-all">
-  Iniciar Defensa Legal
-</a>
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-8 tracking-tight text-primary dark:text-white">
+                    No deberían obligarte a pagar multas
+                    <span class="relative inline">
+                        <span class="relative z-10">
+                            para renovar tu licencia
+                        </span>
+                        <span class="absolute left-0 bottom-1 w-full h-3 bg-accent-yellow/40 -z-0 rounded-sm"></span>
+                    </span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    Brindamos claridad y respaldo legal para proteger tu derecho a la libre circulación y al trabajo.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="<%= whatsappLink %>" target="_blank" rel="noopener"
+                        class="inline-flex items-center justify-center bg-accent text-primary font-bold py-3 px-8 rounded-full hover:opacity-90 transition-all">
+                        Iniciar Defensa Legal
+                    </a>
 
-<p class="text-sm text-gray-500 font-medium">Asesoramiento inmediato</p>
-</div>
-</section>
-<!-- Jurisprudencia y antecedentes -->
-<section class="my-20">
-    
-    <div class="max-w-4xl mx-auto mb-12">
-        <div class="p-8 md:p-10 border border-border-gray dark:border-white/10 rounded-3xl bg-white dark:bg-white/5 shadow-sm">
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-5">
-                Tribunales de la Provincia de Buenos Aires han cuestionado la exigencia de pagar multas como condición para renovar la licencia de conducir.
-            </p>
+                    <p class="text-sm text-gray-500 font-medium">Asesoramiento inmediato</p>
+                </div>
+            </section>
+            <!-- Jurisprudencia y antecedentes -->
+            <section class="my-20">
 
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                En distintos pronunciamientos, la Justicia ha señalado que:
-            </p>
+                <div class="max-w-4xl mx-auto mb-12">
+                    <div
+                        class="p-8 md:p-10 border border-border-gray dark:border-white/10 rounded-3xl bg-white dark:bg-white/5 shadow-sm">
+                        <p class="text-gray-800 dark:text-gray-200 leading-relaxed mb-5">
+                            Tribunales de la Provincia de Buenos Aires han cuestionado la exigencia de pagar multas como
+                            condición para renovar la licencia de conducir.
+                        </p>
 
-            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-                <li class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-accent-yellow mt-0.5">check_circle</span>
-                    <span>el pago de multas no está directamente vinculado con la seguridad vial</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-accent-yellow mt-0.5">check_circle</span>
-                    <span>existen vías legales específicas para su cobro</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-accent-yellow mt-0.5">check_circle</span>
-                    <span>y la exigencia puede operar como una restricción indebida al acceso a la licencia</span>
-                </li>
-            </ul>
-        </div>
-    </div>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                            En distintos pronunciamientos, la Justicia ha señalado que:
+                        </p>
 
-    <!-- Citas jurisprudenciales -->
-    <div class="grid md:grid-cols-2 gap-6 mb-14">
-        <div class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
-            <p class="text-lg font-semibold leading-relaxed mb-4">
-                “La exigencia cuestionada puede afectar el ejercicio de derechos como el trabajo, la circulación y la vida cotidiana.”
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                📌 Suprema Corte de la Provincia de Buenos Aires — 2025
-            </p>
-        </div>
+                        <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-accent-yellow mt-0.5">check_circle</span>
+                                <span>el pago de multas no está directamente vinculado con la seguridad vial</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-accent-yellow mt-0.5">check_circle</span>
+                                <span>existen vías legales específicas para su cobro</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-accent-yellow mt-0.5">check_circle</span>
+                                <span>y la exigencia puede operar como una restricción indebida al acceso a la
+                                    licencia</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-        <div class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
-            <p class="text-lg font-semibold leading-relaxed mb-4">
-                “El requisito impugnado aparece como un obstáculo que impide la renovación de la licencia de conducir.”
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                📌 Suprema Corte de la Provincia de Buenos Aires — 2025
-            </p>
-        </div>
+                <!-- Citas jurisprudenciales -->
+                <div class="grid md:grid-cols-2 gap-6 mb-14">
+                    <div
+                        class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+                        <p class="text-lg font-semibold leading-relaxed mb-4">
+                            “La exigencia cuestionada puede afectar el ejercicio de derechos como el trabajo, la
+                            circulación y la vida cotidiana.”
+                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            📌 Suprema Corte de la Provincia de Buenos Aires — 2025
+                        </p>
+                    </div>
 
-        <div class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
-            <p class="text-lg font-semibold leading-relaxed mb-4">
-                “El planteo presenta, en esta etapa, una seria y consistente apariencia de buen derecho.”
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                📌 Suprema Corte de la Provincia de Buenos Aires — 2025
-            </p>
-        </div>
+                    <div
+                        class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+                        <p class="text-lg font-semibold leading-relaxed mb-4">
+                            “El requisito impugnado aparece como un obstáculo que impide la renovación de la licencia de
+                            conducir.”
+                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            📌 Suprema Corte de la Provincia de Buenos Aires — 2025
+                        </p>
+                    </div>
 
-        <div class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
-            <p class="text-lg font-semibold leading-relaxed mb-4">
-                “El cumplimiento de la norma cuestionada puede generar un perjuicio grave para los derechos invocados.”
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                📌 Suprema Corte de la Provincia de Buenos Aires — 2025
-            </p>
-        </div>
+                    <div
+                        class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+                        <p class="text-lg font-semibold leading-relaxed mb-4">
+                            “El planteo presenta, en esta etapa, una seria y consistente apariencia de buen derecho.”
+                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            📌 Suprema Corte de la Provincia de Buenos Aires — 2025
+                        </p>
+                    </div>
 
-        <div class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
-            <p class="text-lg font-semibold leading-relaxed mb-4">
-                “El requisito de cancelación de multas como condición para renovar la licencia de conducir no guarda adecuada relación con la seguridad vial.”
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
-            </p>
-        </div>
+                    <div
+                        class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+                        <p class="text-lg font-semibold leading-relaxed mb-4">
+                            “El cumplimiento de la norma cuestionada puede generar un perjuicio grave para los derechos
+                            invocados.”
+                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            📌 Suprema Corte de la Provincia de Buenos Aires — 2025
+                        </p>
+                    </div>
 
-        <div class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
-            <p class="text-lg font-semibold leading-relaxed mb-4">
-                “El pago de las multas por infracciones de tránsito no torna al infractor en un conductor más apto ni garantiza un incremento en la seguridad vial.”
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
-            </p>
-        </div>
+                    <div
+                        class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+                        <p class="text-lg font-semibold leading-relaxed mb-4">
+                            “El requisito de cancelación de multas como condición para renovar la licencia de conducir
+                            no guarda adecuada relación con la seguridad vial.”
+                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
+                        </p>
+                    </div>
 
-        <div class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
-            <p class="text-lg font-semibold leading-relaxed mb-4">
-                “La exigencia aparece como un medio inadecuado para alcanzar los fines de seguridad vial.”
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
-            </p>
-        </div>
+                    <div
+                        class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+                        <p class="text-lg font-semibold leading-relaxed mb-4">
+                            “El pago de las multas por infracciones de tránsito no torna al infractor en un conductor
+                            más apto ni garantiza un incremento en la seguridad vial.”
+                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
+                        </p>
+                    </div>
 
-        <div class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
-            <p class="text-lg font-semibold leading-relaxed mb-4">
-                “No se advierte una vinculación razonable entre el pago de multas y la aptitud para conducir.”
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
-            </p>
-        </div>
+                    <div
+                        class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+                        <p class="text-lg font-semibold leading-relaxed mb-4">
+                            “La exigencia aparece como un medio inadecuado para alcanzar los fines de seguridad vial.”
+                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
+                        </p>
+                    </div>
 
-        <div class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm md:col-span-2">
-            <p class="text-lg font-semibold leading-relaxed mb-4">
-                “El Estado cuenta con mecanismos legales específicos para perseguir el cobro de las multas.”
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
-            </p>
-        </div>
-    </div>
+                    <div
+                        class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm">
+                        <p class="text-lg font-semibold leading-relaxed mb-4">
+                            “No se advierte una vinculación razonable entre el pago de multas y la aptitud para
+                            conducir.”
+                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
+                        </p>
+                    </div>
 
-    <!-- Cierre -->
-    <div class="max-w-3xl mx-auto text-center mb-8">
-        <h3 class="text-2xl md:text-3xl font-extrabold mb-4">
-            Si no podés renovar tu licencia por multas, puede haber una alternativa legal
-        </h3>
-        <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-            Analizamos tu caso y te orientamos sobre los pasos a seguir.
-        </p>
-        <a href="<%= whatsappLink %>" target="_blank" rel="noopener"
-           class="inline-flex items-center justify-center bg-accent text-primary font-bold py-3 px-8 rounded-full hover:opacity-90 transition-all">
-            Consultar mi caso
-        </a>
-    </div>
+                    <div
+                        class="p-7 border border-border-gray dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 shadow-sm md:col-span-2">
+                        <p class="text-lg font-semibold leading-relaxed mb-4">
+                            “El Estado cuenta con mecanismos legales específicos para perseguir el cobro de las multas.”
+                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            📌 Cámara de Apelación en lo Civil y Comercial de Mar del Plata — 2023
+                        </p>
+                    </div>
+                </div>
 
-    <!-- Nota -->
-    <div class="max-w-3xl mx-auto">
-        <div class="p-5 rounded-2xl bg-gray-50 dark:bg-white/5 border border-border-gray dark:border-white/10">
-            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                ⚠️ <span class="font-bold">Nota:</span> Cada situación debe evaluarse en forma individual. La existencia de antecedentes judiciales no implica un resultado determinado.
-            </p>
-        </div>
-    </div>
-</section>
-<!-- Final CTA -->
-<!-- <section class="text-center py-12 border-t border-border-gray dark:border-white/10">
+                <!-- Cierre -->
+                <div class="max-w-3xl mx-auto text-center mb-8">
+                    <h3 class="text-2xl md:text-3xl font-extrabold mb-4">
+                        Si no podés renovar tu licencia por multas, puede haber una alternativa legal
+                    </h3>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                        Analizamos tu caso y te orientamos sobre los pasos a seguir.
+                    </p>
+                    <a href="<%= whatsappLink %>" target="_blank" rel="noopener"
+                        class="inline-flex items-center justify-center bg-accent text-primary font-bold py-3 px-8 rounded-full hover:opacity-90 transition-all">
+                        Consultar mi caso
+                    </a>
+                </div>
+
+                <!-- Nota -->
+                <div class="max-w-3xl mx-auto">
+                    <div
+                        class="p-5 rounded-2xl bg-gray-50 dark:bg-white/5 border border-border-gray dark:border-white/10">
+                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                            ⚠️ <span class="font-bold">Nota:</span> Cada situación debe evaluarse en forma individual.
+                            La existencia de antecedentes judiciales no implica un resultado determinado.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <!-- Final CTA -->
+            <!-- <section class="text-center py-12 border-t border-border-gray dark:border-white/10">
 <h2 class="text-3xl font-extrabold mb-8">¿Necesitás asesoramiento inmediato?</h2>
 <div class="flex flex-col items-center gap-6">
 <a href="<%= whatsappLink %>" target="_blank" rel="noopener"
@@ -236,22 +257,24 @@
   Iniciar Defensa Ahora
 </a> -->
 
-<div class="flex items-center gap-8 opacity-60">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined">lock</span>
-<span class="text-xs font-bold uppercase tracking-widest">Privacidad Garantizada</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined">verified_user</span>
-<span class="text-xs font-bold uppercase tracking-widest">Matrícula Profesional</span>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<%- include("partials/footer") %>
-<!-- Floating WhatsApp Button -->
-<%- include("partials/floating-whatsapp") %>
+            <div class="flex items-center gap-8 opacity-60">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined">lock</span>
+                    <span class="text-xs font-bold uppercase tracking-widest">Privacidad Garantizada</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined">verified_user</span>
+                    <span class="text-xs font-bold uppercase tracking-widest">Matrícula Profesional</span>
+                </div>
+            </div>
+            </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <%- include("partials/footer") %>
+            <!-- Floating WhatsApp Button -->
+            <%- include("partials/floating-whatsapp") %>
 
-</body></html>
+</body>
+
+</html>
