@@ -135,7 +135,7 @@ function nextMessage({ text, wa_id, session }) {
           title: "Ubicación",
           rows: [
             { id: IDS.AREA_PBA, title: "Pcia de Buenos Aires", description: "PBA" },
-            { id: IDS.AREA_CABA, title: "C. Autónoma de Buenos Aires", description: "CABA" },
+            { id: IDS.AREA_CABA, title: "Ciudad de Buenos Aires", description: "CABA" },
             { id: IDS.AREA_OTRA, title: "Otra provincia", description: "Interior del país" },
           ],
         },
