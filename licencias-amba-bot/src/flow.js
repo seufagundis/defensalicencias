@@ -143,7 +143,7 @@ function nextMessage({ text, wa_id, session }) {
     );
   }
 
-  // Q1_AREA
+  // Q1_AREAA
   if (session.state === STATES.Q1_AREA) {
     const x = normalizeText(text);
 
