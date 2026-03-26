@@ -134,8 +134,8 @@ function nextMessage({ text, wa_id, session }) {
         {
           title: "Ubicación",
           rows: [
-            { id: IDS.AREA_PBA, title: "Provincia de Buenos Aires", description: "Municipios de la provincia" },
-            { id: IDS.AREA_CABA, title: "Ciudad Autónoma de Buenos Aires", description: "CABA" },
+            { id: IDS.AREA_PBA, title: "Pcia de Buenos Aires", description: "Municipios de la provincia" },
+            { id: IDS.AREA_CABA, title: "Ciudad Autónoma de \nBuenos Aires", description: "CABA" },
             { id: IDS.AREA_OTRA, title: "Otra provincia", description: "Fuera de Buenos Aires" },
           ],
         },
@@ -180,7 +180,7 @@ function nextMessage({ text, wa_id, session }) {
           title: "Monto aproximado",
           rows: [
             { id: IDS.DEBT_ALTA, title: "Más de $3.000.000", description: "Deuda alta / muchas actas" },
-            { id: IDS.DEBT_MEDIA, title: "Entre $1.000.000 y $3.000.000", description: "Deuda media" },
+            { id: IDS.DEBT_MEDIA, title: "Entre $1.000.000 \ny $3.000.000", description: "Deuda media" },
             { id: IDS.DEBT_BAJA, title: "Menos de $1.000.000", description: "Deuda baja" },
           ],
         },
