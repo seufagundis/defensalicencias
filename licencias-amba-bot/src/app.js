@@ -15,7 +15,6 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 // Vistas (sitio web)
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -23,9 +22,7 @@ app.set("view engine", "ejs");
 console.log("CWD:", process.cwd());
 console.log("VIEWS:", app.get("views"));
 
-
 const PORT = process.env.PORT || 3000;
-
 
 // 54911XXXXXXXX -> 541115XXXXXXXX (para envío en modo test AR)
 function normalizeTo(to) {
@@ -64,15 +61,12 @@ async function sendOut(to, out) {
     });
   }
 
-  // Si te olvidaste de mapear una acción nueva, que explote con mensaje claro:
   throw new Error(`Acción no soportada: ${out.action}`);
 }
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
 
 app.get("/", (_req, res) => {
   res.render("inicio", { whatsappLink: buildWhatsAppLink("Inicio") });
@@ -89,8 +83,6 @@ app.get("/faq", (_req, res) => {
 app.get("/contacto", (_req, res) => {
   res.render("contacto", { whatsappLink: buildWhatsAppLink("Contacto") });
 });
-
-
 
 // Healthcheck
 app.get("/health", (_req, res) => res.send("OK - bot up"));
@@ -113,19 +105,48 @@ app.get("/webhook", (req, res) => {
 // Sessions in-memory
 const sessions = new Map(); // wa_id -> session
 
+// Mensajes ya procesados para evitar duplicados de Meta
+const processedMessages = new Map(); // messageId -> timestamp
+
+function isDuplicateMessage(messageId) {
+  if (!messageId) return false;
+
+  if (processedMessages.has(messageId)) {
+    return true;
+  }
+
+  processedMessages.set(messageId, Date.now());
+  return false;
+}
+
+function cleanupProcessedMessages(maxAgeMs = 10 * 60 * 1000) {
+  const now = Date.now();
+
+  for (const [messageId, timestamp] of processedMessages.entries()) {
+    if (now - timestamp > maxAgeMs) {
+      processedMessages.delete(messageId);
+    }
+  }
+}
+
 // Recepción eventos (POST)
 app.post("/webhook", async (req, res) => {
   res.sendStatus(200);
 
   try {
-    // Tu parser actual (ajustá si devuelve otro shape)
+    cleanupProcessedMessages();
+
     const parsed = parseIncomingMessage(req.body);
     if (!parsed) return;
 
-    const wa_id = parsed.wa_id;
-    const text = parsed.text;
+    const { wa_id, text, messageId } = parsed;
 
     if (!wa_id) return;
+
+    if (isDuplicateMessage(messageId)) {
+      console.log("DUPLICATE IGNORED:", { wa_id, text, messageId });
+      return;
+    }
 
     let session = sessions.get(wa_id);
     if (!session) {
@@ -133,15 +154,12 @@ app.post("/webhook", async (req, res) => {
       sessions.set(wa_id, session);
     }
 
+    console.log("IN:", { wa_id, text, messageId, prevState: session?.state });
 
-
-    console.log("IN:", { wa_id, text, prevState: session?.state });
     const out = nextMessage({ text, wa_id, session });
     sessions.set(wa_id, session);
 
-
     console.log("OUT:", { wa_id, newState: session?.state, action: out?.action });
-
 
     const toUser = normalizeTo(wa_id);
 
@@ -150,7 +168,6 @@ app.post("/webhook", async (req, res) => {
       sessions.delete(wa_id);
       return;
     }
-
 
     if (out.action === "HANDOFF") {
       await sendOut(toUser, { action: "REPLY_TEXT", message: out.message });
@@ -164,15 +181,11 @@ app.post("/webhook", async (req, res) => {
       return;
     }
 
-
-    // REPLY
     await sendOut(toUser, out);
-
   } catch (e) {
     console.error("Error en webhook:", e);
   }
 });
-
 
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {

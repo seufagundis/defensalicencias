@@ -6,10 +6,10 @@ export function parseIncomingMessage(body) {
   const message = value?.messages?.[0];
   if (!message) return null;
 
-  // ✅ CLAVE: usar siempre el remitente real del mensaje
   const wa_id = message.from;
+  const messageId = message.id;
 
-  let text = message?.text?.body ?? null;
+  let text = message?.text?.body?.trim() ?? null;
 
   if (message?.type === "interactive") {
     const i = message.interactive;
@@ -18,5 +18,12 @@ export function parseIncomingMessage(body) {
     text = btnId || listId || text;
   }
 
-  return { wa_id, text, raw: message };
+  if (!wa_id || !text) return null;
+
+  return {
+    wa_id,
+    text,
+    messageId,
+    raw: message,
+  };
 }
