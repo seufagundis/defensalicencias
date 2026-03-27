@@ -4,9 +4,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import { sendTextMessage, sendButtonsMessage, sendListMessage } from "./whatsapp.js";
-
 import { parseIncomingMessage } from "./parser.js";
 import { initialSession, nextMessage } from "./flow.js";
+import { redis } from "./redis.js";
 
 dotenv.config();
 
@@ -15,16 +15,14 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Vistas (sitio web)
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-console.log("CWD:", process.cwd());
-console.log("VIEWS:", app.get("views"));
-
 const PORT = process.env.PORT || 3000;
 
-// 54911XXXXXXXX -> 541115XXXXXXXX (para envío en modo test AR)
+const SESSION_TTL_SECONDS = 60 * 60 * 24; // 24 horas
+const DEDUPE_TTL_SECONDS = 60 * 10; // 10 minutos
+
 function normalizeTo(to) {
   if (typeof to === "string" && to.startsWith("54911")) {
     return "541115" + to.slice("54911".length);
@@ -64,6 +62,51 @@ async function sendOut(to, out) {
   throw new Error(`Acción no soportada: ${out.action}`);
 }
 
+function sessionKey(wa_id) {
+  return `session:${wa_id}`;
+}
+
+function messageKey(messageId) {
+  return `msg:${messageId}`;
+}
+
+async function getSession(wa_id) {
+  return await redis.get(sessionKey(wa_id));
+}
+
+async function setSession(wa_id, session) {
+  await redis.set(sessionKey(wa_id), session, { ex: SESSION_TTL_SECONDS });
+}
+
+async function deleteSession(wa_id) {
+  await redis.del(sessionKey(wa_id));
+}
+
+async function getOrCreateSession(wa_id) {
+  let session = await getSession(wa_id);
+
+  if (!session) {
+    session = initialSession();
+    await setSession(wa_id, session);
+  }
+
+  return session;
+}
+
+async function isDuplicateMessage(messageId) {
+  if (!messageId) return false;
+
+  const key = messageKey(messageId);
+  const alreadyProcessed = await redis.get(key);
+
+  if (alreadyProcessed) {
+    return true;
+  }
+
+  await redis.set(key, "1", { ex: DEDUPE_TTL_SECONDS });
+  return false;
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -84,10 +127,16 @@ app.get("/contacto", (_req, res) => {
   res.render("contacto", { whatsappLink: buildWhatsAppLink("Contacto") });
 });
 
-// Healthcheck
-app.get("/health", (_req, res) => res.send("OK - bot up"));
+app.get("/health", async (_req, res) => {
+  try {
+    await redis.ping();
+    res.send("OK - bot up - redis connected");
+  } catch (error) {
+    console.error("Healthcheck Redis error:", error);
+    res.status(500).send("Redis not available");
+  }
+});
 
-// Verificación webhook (GET)
 app.get("/webhook", (req, res) => {
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
@@ -102,62 +151,28 @@ app.get("/webhook", (req, res) => {
   return res.sendStatus(403);
 });
 
-// Sessions in-memory
-const sessions = new Map(); // wa_id -> session
-
-// Mensajes ya procesados para evitar duplicados de Meta
-const processedMessages = new Map(); // messageId -> timestamp
-
-function isDuplicateMessage(messageId) {
-  if (!messageId) return false;
-
-  if (processedMessages.has(messageId)) {
-    return true;
-  }
-
-  processedMessages.set(messageId, Date.now());
-  return false;
-}
-
-function cleanupProcessedMessages(maxAgeMs = 10 * 60 * 1000) {
-  const now = Date.now();
-
-  for (const [messageId, timestamp] of processedMessages.entries()) {
-    if (now - timestamp > maxAgeMs) {
-      processedMessages.delete(messageId);
-    }
-  }
-}
-
-// Recepción eventos (POST)
 app.post("/webhook", async (req, res) => {
   res.sendStatus(200);
 
   try {
-    cleanupProcessedMessages();
-
     const parsed = parseIncomingMessage(req.body);
     if (!parsed) return;
 
     const { wa_id, text, messageId } = parsed;
-
     if (!wa_id) return;
 
-    if (isDuplicateMessage(messageId)) {
+    if (await isDuplicateMessage(messageId)) {
       console.log("DUPLICATE IGNORED:", { wa_id, text, messageId });
       return;
     }
 
-    let session = sessions.get(wa_id);
-    if (!session) {
-      session = initialSession();
-      sessions.set(wa_id, session);
-    }
+    const session = await getOrCreateSession(wa_id);
 
     console.log("IN:", { wa_id, text, messageId, prevState: session?.state });
 
     const out = nextMessage({ text, wa_id, session });
-    sessions.set(wa_id, session);
+
+    await setSession(wa_id, session);
 
     console.log("OUT:", { wa_id, newState: session?.state, action: out?.action });
 
@@ -165,7 +180,7 @@ app.post("/webhook", async (req, res) => {
 
     if (out.action === "DROP") {
       await sendOut(toUser, { action: "REPLY_TEXT", message: out.message });
-      sessions.delete(wa_id);
+      await deleteSession(wa_id);
       return;
     }
 
@@ -177,7 +192,7 @@ app.post("/webhook", async (req, res) => {
         await sendTextMessage({ to: toOp, text: out.operatorSummary });
       }
 
-      sessions.delete(wa_id);
+      await deleteSession(wa_id);
       return;
     }
 
