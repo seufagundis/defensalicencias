@@ -184,17 +184,28 @@ app.post("/webhook", async (req, res) => {
       return;
     }
 
-    if (out.action === "HANDOFF") {
-      await sendOut(toUser, { action: "REPLY_TEXT", message: out.message });
+   if (out.action === "HANDOFF") {
+  await sendOut(toUser, { action: "REPLY_TEXT", message: out.message });
 
-      if (process.env.OPERATOR_PHONE) {
-        const toOp = normalizeTo(process.env.OPERATOR_PHONE);
-        await sendTextMessage({ to: toOp, text: out.operatorSummary });
-      }
-
-      await deleteSession(wa_id);
-      return;
+  if (process.env.OPERATOR_PHONE) {
+    try {
+      const toOp = normalizeTo(process.env.OPERATOR_PHONE);
+      await sendTextMessage({ to: toOp, text: out.operatorSummary });
+      console.log("HANDOFF SENT:", { wa_id, toOp });
+    } catch (error) {
+      console.error("HANDOFF FAILED:", {
+        wa_id,
+        operatorPhone: process.env.OPERATOR_PHONE,
+        error: error?.response?.data || error?.message,
+      });
     }
+  } else {
+    console.warn("HANDOFF SKIPPED: falta OPERATOR_PHONE");
+  }
+
+  await deleteSession(wa_id);
+  return;
+}
 
     await sendOut(toUser, out);
   } catch (e) {
