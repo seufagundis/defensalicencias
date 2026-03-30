@@ -112,6 +112,12 @@ function nextMessage({ text, wa_id, session }) {
   const t = (text || "").trim();
   const d = session.data;
 
+  const tNorm = normalizeText(text);
+
+  if (tNorm.includes("HOLA") || tNorm.includes("INICIAR")) {
+    session.state = STATES.START;
+  }
+
   function replyList(body, buttonText, sections) {
     return { action: "REPLY_LIST", body, buttonText, sections };
   }
@@ -200,8 +206,8 @@ function nextMessage({ text, wa_id, session }) {
       x === IDS.DEBT_ALTA
         ? "ALTA"
         : x === IDS.DEBT_MEDIA
-        ? "MEDIA"
-        : "BAJA";
+          ? "MEDIA"
+          : "BAJA";
 
     if (x === IDS.DEBT_BAJA) {
       session.state = STATES.DROPPED;

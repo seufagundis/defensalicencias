@@ -161,6 +161,10 @@ app.post("/webhook", async (req, res) => {
     const { wa_id, text, messageId } = parsed;
     if (!wa_id) return;
 
+    if (/hola|menu|menú|reiniciar|reset/i.test(text)) {
+  await deleteSession(wa_id);
+}
+
     if (await isDuplicateMessage(messageId)) {
       console.log("DUPLICATE IGNORED:", { wa_id, text, messageId });
       return;
