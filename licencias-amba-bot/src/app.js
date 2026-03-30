@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import { sendLeadEmail } from "./mailer.js";
+
 import { sendTextMessage, sendButtonsMessage, sendListMessage } from "./whatsapp.js";
 import { parseIncomingMessage } from "./parser.js";
 import { initialSession, nextMessage } from "./flow.js";
@@ -191,22 +192,20 @@ app.post("/webhook", async (req, res) => {
     if (out.action === "HANDOFF") {
   await sendOut(toUser, { action: "REPLY_TEXT", message: out.message });
 
-  try {
-    const lead = {
-      nombre: session.data.clientName,
-      telefono: wa_id,
-      localidad: session.data.municipality,
-      situacion: `Restricción por multas - ${session.data.debtBucket || "SIN DATO"}`,
-      detalle: out.operatorSummary,
-    };
-
-    await sendLeadEmail(lead);
-    console.log("EMAIL LEAD SENT:", { wa_id, to: process.env.EMAIL_TO });
-  } catch (error) {
-    console.error("EMAIL LEAD FAILED:", {
-      wa_id,
-      error: error?.message || error,
-    });
+  if (process.env.OPERATOR_PHONE) {
+    try {
+      const toOp = normalizeTo(process.env.OPERATOR_PHONE);
+      await sendTextMessage({ to: toOp, text: out.operatorSummary });
+      console.log("HANDOFF SENT:", { wa_id, toOp });
+    } catch (error) {
+      console.error("HANDOFF FAILED:", {
+        wa_id,
+        operatorPhone: process.env.OPERATOR_PHONE,
+        error: error?.response?.data || error?.message,
+      });
+    }
+  } else {
+    console.warn("HANDOFF SKIPPED: falta OPERATOR_PHONE");
   }
 
   await deleteSession(wa_id);
