@@ -189,36 +189,50 @@ app.post("/webhook", async (req, res) => {
       return;
     }
 
-   if (out.action === "HANDOFF") {
-  await sendOut(toUser, { action: "REPLY_TEXT", message: out.message });
+    if (out.action === "HANDOFF") {
+      await sendOut(toUser, { action: "REPLY_TEXT", message: out.message });
 
-  try {
-    const lead = {
-      nombre: session.data.clientName,
-      telefono: wa_id,
-      localidad: session.data.municipality,
-      situacion: `Restricción por multas - ${session.data.debtBucket || "SIN DATO"}`,
-      detalle: out.operatorSummary,
-    };
+      const lead = {
+        nombre: session.data.clientName,
+        telefono: wa_id,
+        localidad: session.data.municipality,
+        situacion: `Restricción por multas - ${session.data.debtBucket || "SIN DATO"}`,
+        detalle: out.operatorSummary,
+      };
 
-    console.log("EMAIL LEAD PREPARED:", lead);
+      try {
+        console.log("EMAIL LEAD PREPARED:", lead);
+        await sendLeadEmail(lead);
+        console.log("EMAIL LEAD SENT:", {
+          wa_id,
+          to: process.env.EMAIL_TO,
+        });
+      } catch (error) {
+        console.error("EMAIL LEAD FAILED:", {
+          wa_id,
+          error: error?.message || error,
+        });
+      }
 
-    await sendLeadEmail(lead);
+      if (process.env.OPERATOR_PHONE) {
+        try {
+          const toOp = normalizeTo(process.env.OPERATOR_PHONE);
+          await sendTextMessage({ to: toOp, text: out.operatorSummary });
+          console.log("WHATSAPP LEAD SENT:", { wa_id, toOp });
+        } catch (error) {
+          console.error("WHATSAPP LEAD FAILED:", {
+            wa_id,
+            operatorPhone: process.env.OPERATOR_PHONE,
+            error: error?.response?.data || error?.message,
+          });
+        }
+      } else {
+        console.warn("WHATSAPP LEAD SKIPPED: falta OPERATOR_PHONE");
+      }
 
-    console.log("EMAIL LEAD SENT:", {
-      wa_id,
-      to: process.env.EMAIL_TO,
-    });
-  } catch (error) {
-    console.error("EMAIL LEAD FAILED:", {
-      wa_id,
-      error: error?.message || error,
-    });
-  }
-
-  await deleteSession(wa_id);
-  return;
-}
+      await deleteSession(wa_id);
+      return;
+    }
     await sendOut(toUser, out);
   } catch (e) {
     console.error("Error en webhook:", e);
