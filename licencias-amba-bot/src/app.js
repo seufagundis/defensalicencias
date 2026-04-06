@@ -34,7 +34,7 @@ function normalizeTo(to) {
 function buildWhatsAppLink(originLabel) {
   const phone = process.env.SITE_WHATSAPP_PHONE || process.env.OPERATOR_PHONE;
   const base = "Hola, quiero evaluar mi caso por restricción de licencia.";
-  const origin = originLabel ? ` (Origen: sitio web - ${originLabel})` : "";
+  const origin = originLabel ? `` : "";
   const text = encodeURIComponent(base + origin);
 
   if (!phone) return "#";
