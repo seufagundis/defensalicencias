@@ -110,7 +110,7 @@ async function isDuplicateMessage(messageId) {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../public")));
 
 app.get("/", (_req, res) => {
   res.render("inicio", { whatsappLink: buildWhatsAppLink("Inicio") });
