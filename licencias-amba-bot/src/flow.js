@@ -99,7 +99,6 @@ function buildOperatorSummary({ wa_id, session }) {
     `• Radicación: ${d.fineJuris || "—"}`,
     `• Vencimiento licencia: ${d.licenseDue || "—"}`,
     "",
-    `Estimación honorarios: ${d.quoteRange || "—"}`,
     `Consentimiento: ${d.consent === true ? "✅" : d.consent === false ? "❌" : "—"}`,
   ].join("\n");
 }
@@ -290,8 +289,7 @@ function nextMessage({ text, wa_id, session }) {
       `• Deuda: ${d.debtBucket || "—"}\n` +
       `• Cantidad: ${d.fineCount ?? "NO SÉ"}\n` +
       `• Radicación: ${d.fineJuris}\n` +
-      `• Vencimiento: ${d.licenseDue}\n` +
-      `• Estimación: ${d.quoteRange}\n`;
+      `• Vencimiento: ${d.licenseDue}\n`;
 
     return replyButtons(
       `Revisá si está bien:\n\n${summary}\n¿Confirmás?`,
